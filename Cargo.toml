@@ -1,10 +1,10 @@
 [package]
 name = "cwjh_wasm"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
 description = "A set of rust utils"
 repository = "https://github.com/klos71/cwjh_wasm_tools.git"
-license = "GPL2"
+license = "GPL-3.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
