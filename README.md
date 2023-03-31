@@ -21,3 +21,7 @@ to install the dependencies
 `cargo build`
 
 build the pkg folder containing the js module with `wasm-pack build --scope klos71 --release --target web` when the pkg folder has been generated cd into it and `yarn link` to create a local yarn package and then use `yarn link "@klos71/cwjh_wasm"` in the web project.
+
+## Tests
+
+run tests with `wasm-pack test --node`
