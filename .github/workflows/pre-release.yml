@@ -1,0 +1,35 @@
+---
+name: "pre-release"
+
+on:
+  push:
+    branches:
+      - "develop"
+
+jobs:
+  gh_pre_release:
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Checkout source code"
+        uses: "actions/checkout@v2.3.4"
+        with:
+          lfs: true
+          fetch-depth: 0
+      - name: "Install wasm-pack"
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - name: "cargo test"
+        run: cargo test
+      - name: "wasm-pack test --node"
+        run: wasm-pack test --node
+      - name: "wasm-pack build"
+        run: wasm-pack build --scope klos71 --release --target web
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          files: |
+            pkg/*
+        id: "automatic_releases"
