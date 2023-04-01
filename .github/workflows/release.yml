@@ -24,11 +24,12 @@ jobs:
         run: wasm-pack test --node
       - name: "wasm-pack build"
         run: wasm-pack build --scope klos71 --release --target web
-      - name: "publish to npm"
+      
       - uses: actions/setup-node@v3
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
+      - name: "publish to npm"
       - run: cd pkg && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
