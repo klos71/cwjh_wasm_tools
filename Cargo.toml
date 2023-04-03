@@ -1,6 +1,6 @@
 [package]
 name = "cwjh_wasm"
-version = "0.0.8"
+version = "0.0.9"
 edition = "2021"
 description = "A set of rust utils"
 repository = "https://github.com/klos71/cwjh_wasm_tools.git"
