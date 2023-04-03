@@ -15,9 +15,19 @@ pub fn string_to_binary(msg: String) -> String {
     msg_in_binary
 }
 
+#[wasm_bindgen]
+pub fn binary_to_string(msg: &str) -> String {
+    return msg
+        .split(" ")
+        .map(|n| u32::from_str_radix(n, 2).unwrap())
+        .map(|c| char::from_u32(c).unwrap())
+        .collect();
+}
+
 #[cfg(test)]
 mod test {
     use crate::add;
+    use crate::binary_to_string;
     use crate::string_to_binary;
     use wasm_bindgen_test::*;
 
@@ -38,6 +48,16 @@ mod test {
         assert_eq!(
             string_to_binary("klos71".to_string()),
             "01101011 01101100 01101111 01110011 0110111 0110001 ".to_string()
+        );
+    }
+
+    #[wasm_bindgen_test]
+    fn test_binary_to_string() {
+        assert_eq!(binary_to_string("01100001"), "a");
+        assert_eq!(binary_to_string("01100001 01100010"), "ab".to_string());
+        assert_eq!(
+            binary_to_string("01101011 01101100 01101111 01110011 0110111 0110001"),
+            "klos71".to_string()
         );
     }
 }
